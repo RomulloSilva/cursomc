@@ -1,9 +1,13 @@
 package com.romulosilva.cursomc;
 
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 
 import com.romulosilva.cursomc.domain.*;
 import com.romulosilva.cursomc.domain.Endereco;
+import com.romulosilva.cursomc.domain.Enuns.EstadoPagamento;
 import com.romulosilva.cursomc.domain.Enuns.TipoCliente;
 import com.romulosilva.cursomc.repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +32,12 @@ public class CursomcApplication implements CommandLineRunner {
     private ClienteRepository clienteRepository;
     @Autowired
     private EnderecoRepository enderecoRepository;
+
+    @Autowired
+    private PedidoRepository pedidoRepository;
+
+    @Autowired
+    private PagamentoRepository pagamentoRepository;
 
     public static void main(String[] args) {
         SpringApplication.run(CursomcApplication.class, args);
@@ -76,6 +86,24 @@ public class CursomcApplication implements CommandLineRunner {
 
         clienteRepository.saveAll(Arrays.asList(cli1));
         enderecoRepository.saveAll(Arrays.asList(e1,e2));
+
+        String str = "2017-09-30 12:30";
+        String str1 = "2017-10-10 16:45";
+        String dt = "2021-10-10 00:00";
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+        Pedido ped1 = new Pedido(null, LocalDateTime.parse(str, formatter), cli1, e1);
+        Pedido ped2 = new Pedido(null, LocalDateTime.parse(str1, formatter), cli1, e2);
+
+        Pagamento pagto1 = new PagamentoComCartao(null, EstadoPagamento.QUITADO, ped1, 6);
+        ped1.setPagamento(pagto1);
+
+        Pagamento pagto2 = new PagamentoComBoleto(null, EstadoPagamento.PEDENTE, ped2,LocalDateTime.parse(dt, formatter), null);
+        ped2.setPagamento(pagto2);
+
+        cli1.getPedidos().addAll(Arrays.asList(ped1, ped2));
+
+        pedidoRepository.saveAll(Arrays.asList(ped1, ped2));
+        pagamentoRepository.saveAll(Arrays.asList(pagto1, pagto2));
 
     }
 
