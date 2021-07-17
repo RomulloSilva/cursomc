@@ -18,18 +18,11 @@ public class Cidade implements Serializable {
     private Estado estado;
 
     public Cidade() {
-
     }
 
-    public Cidade(Integer id, String nome) {
+    public Cidade(Integer id, String nome, Estado est1) {
         this.id = id;
         this.nome = nome;
-    }
-
-    public Cidade(Integer id, String nome, Estado estado) {
-        this.id = id;
-        this.nome = nome;
-        this.estado = estado;
     }
 
     public Integer getId() {
