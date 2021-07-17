@@ -3,7 +3,7 @@ package com.romulosilva.cursomc;
 import java.util.Arrays;
 
 import com.romulosilva.cursomc.domain.*;
-import com.romulosilva.cursomc.domain.Enuns.Endereco;
+import com.romulosilva.cursomc.domain.Endereco;
 import com.romulosilva.cursomc.domain.Enuns.TipoCliente;
 import com.romulosilva.cursomc.repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -66,7 +66,7 @@ public class CursomcApplication implements CommandLineRunner {
         estadoRepository.saveAll(Arrays.asList(est1, est2));
         cidadeRepository.saveAll(Arrays.asList(c1, c2, c3));
 
-        Cliente cli1 = new Cliente(null, "Romulo Silva", "Email.com", "85298765421", TipoCliente.PESSOA_FISICA);
+        Cliente cli1 = new Cliente(null, "Romulo Silva", "Email.com", "85298765421", TipoCliente.PESSOAFISICA);
         cli1.getTelefones().addAll(Arrays.asList("11985214785", "11932478512"));
 
         Endereco e1 = new Endereco(null, "E 66th St", "49", "APTO 3007", "Manhattan", "589", cli1, c1);

@@ -2,8 +2,8 @@ package com.romulosilva.cursomc.domain.Enuns;
 
 public enum TipoCliente {
 
-    PESSOA_FISICA(1, "Pessoa Física"),
-    PESSOA_JURIDICA(2, "Pessoa Jurídica");
+    PESSOAFISICA(1, "Pessoa Física"),
+    PESSOAJURIDICA(2, "Pessoa Jurídica");
 
     private int cod;
     private String descricao;

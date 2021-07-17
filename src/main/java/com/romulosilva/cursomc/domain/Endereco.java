@@ -1,11 +1,9 @@
-package com.romulosilva.cursomc.domain.Enuns;
+package com.romulosilva.cursomc.domain;
 
-import com.romulosilva.cursomc.domain.Cidade;
-import com.romulosilva.cursomc.domain.Cliente;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Objects;
 
 @Entity
 public class Endereco implements Serializable {
@@ -20,6 +18,7 @@ public class Endereco implements Serializable {
     private String bairro;
     private String cep;
 
+    @JsonBackReference
     @ManyToOne
     @JoinColumn(name="cliente_id")
     private Cliente cliente;
