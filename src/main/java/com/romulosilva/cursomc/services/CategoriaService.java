@@ -1,6 +1,7 @@
 package com.romulosilva.cursomc.services;
 
 import com.romulosilva.cursomc.domain.Categoria;
+import com.romulosilva.cursomc.dto.CategoriaDTO;
 import com.romulosilva.cursomc.repositories.CategoriaRepository;
 import com.romulosilva.cursomc.services.exceptions.DataIntegrityException;
 import com.romulosilva.cursomc.services.exceptions.ObjectNotFoundException;
@@ -60,5 +61,10 @@ public class CategoriaService {
         PageRequest pageRequest = PageRequest.of(page, linesPerPage, Sort.Direction.valueOf(direction), orderBy);
         return repo.findAll(pageRequest);
 
+    }
+
+
+    public Categoria fromDto(CategoriaDTO objDto) {
+        return new Categoria(objDto.getId(), objDto.getNome());
     }
 }
