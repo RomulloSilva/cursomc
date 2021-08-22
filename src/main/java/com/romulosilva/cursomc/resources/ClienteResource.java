@@ -1,8 +1,6 @@
 package com.romulosilva.cursomc.resources;
 
-import com.romulosilva.cursomc.domain.Categoria;
 import com.romulosilva.cursomc.domain.Cliente;
-import com.romulosilva.cursomc.services.CategoriaService;
 import com.romulosilva.cursomc.services.ClienteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -15,14 +13,14 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping(value = "/clientes")
 public class ClienteResource {
 
-	@Autowired
-	private ClienteService service;
+    @Autowired
+    private ClienteService service;
 
-	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
-	public ResponseEntity<?> find(@PathVariable Integer id){
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    public ResponseEntity<Cliente> find(@PathVariable Integer id) {
 
-		Cliente obj = service.buscar(id);
-		return ResponseEntity.ok(obj);
-	}
+        Cliente obj = service.find(id);
+        return ResponseEntity.ok(obj);
+    }
 
 }
