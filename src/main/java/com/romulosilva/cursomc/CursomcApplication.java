@@ -1,6 +1,7 @@
 package com.romulosilva.cursomc;
 
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
@@ -88,7 +89,7 @@ public class CursomcApplication implements CommandLineRunner {
         cli1.getEnderecos().addAll(Arrays.asList(e1, e2));
 
         clienteRepository.saveAll(Arrays.asList(cli1));
-        enderecoRepository.saveAll(Arrays.asList(e1,e2));
+        enderecoRepository.saveAll(Arrays.asList(e1, e2));
 
         String str = "2017-09-30 12:30";
         String str1 = "2017-10-10 16:45";
@@ -100,7 +101,7 @@ public class CursomcApplication implements CommandLineRunner {
         Pagamento pagto1 = new PagamentoComCartao(null, EstadoPagamento.QUITADO, ped1, 6);
         ped1.setPagamento(pagto1);
 
-        Pagamento pagto2 = new PagamentoComBoleto(null, EstadoPagamento.PEDENTE, ped2,LocalDateTime.parse(dt, formatter), null);
+        Pagamento pagto2 = new PagamentoComBoleto(null, EstadoPagamento.PEDENTE, ped2, LocalDate.of(2021,9,8), null);
         ped2.setPagamento(pagto2);
 
         cli1.getPedidos().addAll(Arrays.asList(ped1, ped2));
@@ -119,7 +120,7 @@ public class CursomcApplication implements CommandLineRunner {
         p2.getItens().addAll(Arrays.asList(ip3));
         p3.getItens().addAll(Arrays.asList(ip2));
 
-        itemPedidoRepository.saveAll(Arrays.asList(ip1,ip2,ip3));
+        itemPedidoRepository.saveAll(Arrays.asList(ip1, ip2, ip3));
 
 
     }
