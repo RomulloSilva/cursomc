@@ -1,13 +1,6 @@
 package com.romulosilva.cursomc;
 
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.Arrays;
-
 import com.romulosilva.cursomc.domain.*;
-import com.romulosilva.cursomc.domain.Endereco;
 import com.romulosilva.cursomc.domain.Enuns.EstadoPagamento;
 import com.romulosilva.cursomc.domain.Enuns.TipoCliente;
 import com.romulosilva.cursomc.repositories.*;
@@ -15,6 +8,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Arrays;
 
 @SpringBootApplication
 public class CursomcApplication implements CommandLineRunner {
@@ -52,6 +50,11 @@ public class CursomcApplication implements CommandLineRunner {
 
         Categoria cat1 = new Categoria(null, "Informática");
         Categoria cat2 = new Categoria(null, "Escritório");
+        Categoria cat3 = new Categoria(null, "Cama mesa e banho");
+        Categoria cat4 = new Categoria(null, "Eletrônicos");
+        Categoria cat5 = new Categoria(null, "Jardinagem");
+        Categoria cat6 = new Categoria(null, "Decoração");
+        Categoria cat7 = new Categoria(null, "Perfumaria");
 
         Produto p1 = new Produto(null, "Computador", 2000.00);
         Produto p2 = new Produto(null, "Impressora", 800.00);
@@ -64,7 +67,7 @@ public class CursomcApplication implements CommandLineRunner {
         p2.getCategorias().addAll(Arrays.asList(cat1, cat2));
         p3.getCategorias().addAll(Arrays.asList(cat1));
 
-        categoriaRepository.saveAll(Arrays.asList(cat1, cat2));
+        categoriaRepository.saveAll(Arrays.asList(cat1, cat2, cat3, cat4, cat5, cat6, cat7));
         produtoRepository.saveAll(Arrays.asList(p1, p2, p3));
 
         Estado est1 = new Estado(null, "Minas Gerais");
@@ -101,7 +104,7 @@ public class CursomcApplication implements CommandLineRunner {
         Pagamento pagto1 = new PagamentoComCartao(null, EstadoPagamento.QUITADO, ped1, 6);
         ped1.setPagamento(pagto1);
 
-        Pagamento pagto2 = new PagamentoComBoleto(null, EstadoPagamento.PEDENTE, ped2, LocalDate.of(2021,9,8), null);
+        Pagamento pagto2 = new PagamentoComBoleto(null, EstadoPagamento.PEDENTE, ped2, LocalDate.of(2021, 9, 8), null);
         ped2.setPagamento(pagto2);
 
         cli1.getPedidos().addAll(Arrays.asList(ped1, ped2));
